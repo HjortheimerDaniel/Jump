@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class ArrowDraw : MonoBehaviour
 {
     [SerializeField] private Image arrowImage;
-    private Vector3 clickPosition;
+    public Vector3 clickPosition;
+    public Vector3 dragVector;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class ArrowDraw : MonoBehaviour
         if (Input.GetMouseButton(0)) //when pressing left mouseclick
         {
 
-            Vector3 dragVector = clickPosition - Input.mousePosition; //calculate distance between where we clicked and released
+            dragVector = clickPosition - Input.mousePosition; //calculate distance between where we clicked and released
 
             float size = dragVector.magnitude; //get the length of the vector, because we want to change the size of the arrow accordingly
             
