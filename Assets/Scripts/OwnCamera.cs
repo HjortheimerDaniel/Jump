@@ -41,7 +41,6 @@ public class OwnCamera : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) // When we release the left mouse button
         {
             isDragging = false;
-            CameraStartPos();
 
         }
 
@@ -51,25 +50,44 @@ public class OwnCamera : MonoBehaviour
             Vector3 dragVector = currentMousePosition - clickPosition; // Calculate the drag vector
 
             // Adjust the camera bias based on the drag direction
-            if (clickPosition.x < currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasX > -0.43)
+            if (clickPosition.x < currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x > -5)
             {
-                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasX -= 0.02f;
+                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x -= 0.1f;
             }
 
-            if(clickPosition.x > currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasX < 0.44)
+            if(clickPosition.x > currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x < 5)
             {
-                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasX += 0.02f;
+                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x += 0.1f;
             }
             //clickPosition = currentMousePosition; // Update the click position for continuous dragging
 
             Debug.Log(currentMousePosition);
         }
+        else
+        {
+            ResetCameraPos();
+        }
+
     }
 
     void CameraStartPos()
     {
-        _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasY = -0.34f;
-        _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_BiasX = -0.013f;
+        _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x = 0.0f;
+    }
+
+    void ResetCameraPos()
+    {
+        if (!isDragging && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x < 0.0f)
+        {
+            _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x += 0.1f;
+
+        }
+
+        if (!isDragging && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x > 0.0f)
+        {
+            _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x -= 0.1f;
+
+        }
     }
 }
 

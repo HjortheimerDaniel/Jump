@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] Text text;
+    private int maxCoins = 3;
+    private int takenCoins = 0;
 
     void Start()
     {

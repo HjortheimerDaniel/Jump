@@ -42,11 +42,11 @@ public class PullingJump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //var obj = collision.gameObject;
-        //var rend = obj.gameObject.GetComponent<Renderer>();
-        //var mat = rend.material;
-        //mat.color = Color.yellow;
-        //rend.material = mat;
+        var obj = collision.gameObject;
+        var rend = obj.gameObject.GetComponent<Renderer>();
+        var mat = rend.material;
+        mat.color = Color.yellow;
+        rend.material = mat;
         //if(collision.gameObject.tag == "Ground")
         //{
 
