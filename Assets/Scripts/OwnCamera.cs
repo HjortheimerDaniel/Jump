@@ -50,20 +50,33 @@ public class OwnCamera : MonoBehaviour
             Vector3 currentMousePosition = Input.mousePosition; // Get the current mouse position
             Vector3 dragVector = currentMousePosition - clickPosition; // Calculate the drag vector
 
+
             // Adjust the camera bias based on the drag direction
             if (clickPosition.x < currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x > -5 && dragVector.x >= dragSizeMax)
             {
                 _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x -= 0.1f;
             }
+            else if(clickPosition.x < currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x < 0 && dragVector.x <= dragSizeMax)
+            {
+                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x += 0.1f;
 
-            if(clickPosition.x > currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x < 5 && dragVector.x <= -dragSizeMax)
+            }
+
+
+            if (clickPosition.x > currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x < 5 && dragVector.x <= -dragSizeMax)
             {
                 _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x += 0.1f;
             }
+            else if (clickPosition.x > currentMousePosition.x && _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x > 0 && dragVector.x >= -dragSizeMax)
+            {
+                _virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.x -= 0.1f;
+
+            }
+
             //clickPosition = currentMousePosition; // Update the click position for continuous dragging
 
             //Debug.Log(currentMousePosition);
-            //Debug.Log(dragVector);
+            Debug.Log(dragVector);
         }
         else
         {

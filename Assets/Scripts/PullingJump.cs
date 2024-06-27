@@ -10,7 +10,7 @@ public class PullingJump : MonoBehaviour
     Vector3 clickPosition;
     bool canJump = false;
     private float minSize = 0;
-    private float maxSize = 20;
+    private float maxSize = 20;    
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class PullingJump : MonoBehaviour
     void Update()
     {
         Jump();
+        
     }
 
     void Jump()
@@ -39,8 +40,8 @@ public class PullingJump : MonoBehaviour
             float size = dragVector.magnitude / 50; //get the length of the vector
             float clamp = Mathf.Clamp(size, minSize, maxSize);
             rb.velocity = (dragVector.normalized / 2.1f) * (jumpSpeed + clamp);
-            Debug.Log("clamp " + clamp);
-            Debug.Log("size " + size);
+            //Debug.Log("clamp " + clamp);
+            //Debug.Log("size " + size);
         }
     }
 

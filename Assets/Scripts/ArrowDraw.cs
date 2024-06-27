@@ -45,7 +45,7 @@ public class ArrowDraw : MonoBehaviour
             float factor = Mathf.Clamp01(1 - size / 1000); // calculate the factor to decrease green and blue. This clamps the value between 1 and 0
             color.g = factor;
             color.b = factor;
-            Debug.Log($"Color: {color}");
+           // Debug.Log($"Color: {color}");
             arrowImage.color = color;
 
             //float angleRad = Mathf.Atan2(dragVector.y, dragVector.x); //get the angle
