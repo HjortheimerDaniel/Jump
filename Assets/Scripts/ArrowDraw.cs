@@ -26,6 +26,10 @@ public class ArrowDraw : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) //when we press left mouseclick
         {
             arrowImage.gameObject.SetActive(true);
+            //float r = Random.Range(0, 1f);
+            //float g = Random.Range(0, 1f);
+            //float b = Random.Range(0, 1f);
+            //arrowImage.color = new Color(r, g, b);
             arrowImage.rectTransform.sizeDelta = Vector2.zero;
             clickPosition = Input.mousePosition; //take the position where we clicked
             arrowImage.rectTransform.position = clickPosition; // rectTransform = gets the screen position
@@ -37,7 +41,13 @@ public class ArrowDraw : MonoBehaviour
             dragVector = clickPosition - Input.mousePosition; //calculate distance between where we clicked and released
 
             float size = dragVector.magnitude; //get the length of the vector, because we want to change the size of the arrow accordingly
-            
+            Color color = new Color(1, 1, 1);
+            float factor = Mathf.Clamp01(1 - size / 1000); // calculate the factor to decrease green and blue. This clamps the value between 1 and 0
+            color.g = factor;
+            color.b = factor;
+            Debug.Log($"Color: {color}");
+            arrowImage.color = color;
+
             //float angleRad = Mathf.Atan2(dragVector.y, dragVector.x); //get the angle
 
             //arrowImage.rectTransform.position = clickPosition; //move the mouse to the position we clicked

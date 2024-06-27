@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PullingJump : MonoBehaviour
 {
-    [SerializeField] float jumpSpeed = 10f;
+    [SerializeField] float jumpSpeed = 3f;
     [SerializeField] float groundAngleLimit = 30f;
     Rigidbody rb;
     Vector3 clickPosition;
     bool canJump = false;
+    private float minSize = 0;
+    private float maxSize = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,20 +36,21 @@ public class PullingJump : MonoBehaviour
 
             Vector3 dragVector = clickPosition - Input.mousePosition; //calculate distance between where we clicked and released
 
-            float size = dragVector.magnitude; //get the length of the vector
-
-            rb.velocity = dragVector.normalized * jumpSpeed;
-
+            float size = dragVector.magnitude / 50; //get the length of the vector
+            float clamp = Mathf.Clamp(size, minSize, maxSize);
+            rb.velocity = (dragVector.normalized / 2.1f) * (jumpSpeed + clamp);
+            Debug.Log("clamp " + clamp);
+            Debug.Log("size " + size);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        var obj = collision.gameObject;
-        var rend = obj.gameObject.GetComponent<Renderer>();
-        var mat = rend.material;
-        mat.color = Color.yellow;
-        rend.material = mat;
+        //var obj = collision.gameObject;
+        //var rend = obj.gameObject.GetComponent<Renderer>();
+        //var mat = rend.material;
+        //mat.color = Color.yellow;
+        //rend.material = mat;
         //if(collision.gameObject.tag == "Ground")
         //{
 
@@ -62,7 +66,7 @@ public class PullingJump : MonoBehaviour
         }
 
         //}
-        Debug.Log(collision.gameObject.name + "test3");
+        //Debug.Log(collision.gameObject.name + "test3");
 
     }
 

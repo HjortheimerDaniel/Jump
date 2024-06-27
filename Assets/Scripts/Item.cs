@@ -7,12 +7,14 @@ public class Item : MonoBehaviour
 {
     Animator animator;
     [SerializeField] Text text;
-    private int maxCoins = 3;
-    private int takenCoins = 0;
+    //private int maxCoins = 3;
+    //private int takenCoins = 0;
+    AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>(); //take the component from where this scrips is attached to
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -37,15 +39,16 @@ public class Item : MonoBehaviour
         //rb.drag = 15;
        // animator.Play("Get");
        
-        Debug.Log(other.gameObject.name + " Is inside you");
+        //Debug.Log(other.gameObject.name + " Is inside you");
         animator.SetBool("IsGet", true);
+        audioSource.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
         //Rigidbody rb = other.GetComponent<Rigidbody>();
         //rb.drag = 0;
-        Debug.Log(other.gameObject.name + " Is no longer inside you");
+        //Debug.Log(other.gameObject.name + " Is no longer inside you");
 
     }
 }
