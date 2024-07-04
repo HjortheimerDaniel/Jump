@@ -8,7 +8,9 @@ public class StageClearText : MonoBehaviour
     private Transform _transform;
     [SerializeField] Item _item;
     [SerializeField] private GameObject _container;
-    private Vector3 targetPosition = new Vector3(300f, 300f, 0f);
+    [SerializeField] GameObject _nextStageText;
+    [SerializeField] GameObject _menuStageText;
+    private Vector3 targetPosition = new Vector3(800f, 500f, 0f);
     private float duration = 1.0f;
     private Vector3 startPosition;
     //-36
@@ -19,9 +21,15 @@ public class StageClearText : MonoBehaviour
         _transform = GetComponent<Transform>();
         //_item = GetComponent<Item>();
         startPosition = _transform.position;
+        _nextStageText.SetActive(false);
+        _menuStageText.SetActive(false);
         //_container = GetComponent<GameObject>();
         //_container.SetActive(false);
 
+    }
+    private void Awake()
+    {
+        
     }
 
     // Update is called once per frame
@@ -37,6 +45,9 @@ public class StageClearText : MonoBehaviour
            // _container.SetActive(true);
             //_container.SetActive(true);
             StartCoroutine(EaseText());
+            _nextStageText.SetActive(true);
+            _menuStageText.SetActive(true);
+
         }
     }
 

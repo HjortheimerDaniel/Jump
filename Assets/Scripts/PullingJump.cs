@@ -10,7 +10,9 @@ public class PullingJump : MonoBehaviour
     Vector3 clickPosition;
     bool canJump = false;
     private float minSize = 0;
-    private float maxSize = 20;    
+    private float maxSize = 20;
+    [SerializeField] Item _item;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +23,12 @@ public class PullingJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_item.AllCoinsTaken())
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionX;
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+        }
         Jump();
-        
     }
 
     void Jump()

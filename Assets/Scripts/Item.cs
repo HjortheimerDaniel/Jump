@@ -43,9 +43,8 @@ public class Item : MonoBehaviour
         // animator.Play("Get");
 
         //Debug.Log(other.gameObject.name + " Is inside you");
-        takenCoins++;
         animator.SetBool("IsGet", true);
-       
+        takenCoins++;
         Debug.Log(takenCoins);
         audioSource.Play();
         
