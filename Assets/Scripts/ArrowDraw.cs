@@ -40,7 +40,7 @@ public class ArrowDraw : MonoBehaviour
 
             dragVector = clickPosition - Input.mousePosition; //calculate distance between where we clicked and released
 
-            float size = dragVector.magnitude; //get the length of the vector, because we want to change the size of the arrow accordingly
+            float size = dragVector.magnitude /2; //get the length of the vector, because we want to change the size of the arrow accordingly
             Color color = new Color(1, 1, 1);
             float factor = Mathf.Clamp01(1 - size / 1000); // calculate the factor to decrease green and blue. This clamps the value between 1 and 0
             color.g = factor;

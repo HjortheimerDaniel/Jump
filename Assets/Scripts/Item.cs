@@ -7,8 +7,8 @@ public class Item : MonoBehaviour
 {
     Animator animator;
     [SerializeField] Text text;
-    private int maxCoins = 1;
-    static private int takenCoins = 0;
+    private int maxCoins = 3;
+    private int takenCoins = 0;
     AudioSource audioSource;
 
     void Start()

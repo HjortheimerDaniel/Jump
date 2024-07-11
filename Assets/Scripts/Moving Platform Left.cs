@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatformLeft : MonoBehaviour
 {
     Vector3 _initialPostion;
     [SerializeField] float _width = 7f;
@@ -14,7 +16,7 @@ public class MovingPlatform : MonoBehaviour
     void Update()
     {
         float x = _width * Mathf.Cos(Time.time * _speedX);
-        transform.position = _initialPostion + Vector3.right * x;
+        transform.position = _initialPostion + Vector3.left * x;
     }
 
     void OnCollisionEnter(Collision collision)
