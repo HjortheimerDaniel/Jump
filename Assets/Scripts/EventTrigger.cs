@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EventTrigger : MonoBehaviour
 {
+    private bool touchTrigger = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +13,7 @@ public class EventTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TEST");
+       touchTrigger = true;
     }
 
     // Update is called once per frame
@@ -20,4 +21,6 @@ public class EventTrigger : MonoBehaviour
     {
         
     }
+
+    public bool GetTouchTrigger() { return touchTrigger; }
 }

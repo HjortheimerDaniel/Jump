@@ -9,6 +9,8 @@ public class PlayerFalling : MonoBehaviour
     private GameObject _gameObject;
     private Vector3 _lastKnownPosition;
     private bool _resetBool;
+    private float belowStage = -10.0f;
+    [SerializeField] GameObject spikeObject;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class PlayerFalling : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _gameObject = _rb.gameObject;
         _resetBool = false;
+        
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class PlayerFalling : MonoBehaviour
 
     public bool PlayerIsFalling()
     {
-        if (_rb.position.y <= -4f)
+        if (_rb.position.y <= belowStage || spikeObject.GetComponent<Spike>().GetIsTouched())
         {
             //Debug.Log("Test");
             _lastKnownPosition = _rb.position; //save the last position before we set it as inactive
