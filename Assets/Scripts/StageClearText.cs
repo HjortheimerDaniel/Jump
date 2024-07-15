@@ -35,11 +35,7 @@ public class StageClearText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("COOOINS");
-
-        }
+       
         if (_item.AllCoinsTaken())
         {
            // _container.SetActive(true);
